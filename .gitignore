@@ -1,4 +1,5 @@
 .DS_Store
+app/release
 
 # Gradle files
 .gradle/
