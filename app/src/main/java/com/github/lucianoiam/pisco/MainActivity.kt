@@ -170,11 +170,15 @@ class MainActivity : AppCompatActivity() {
 
         override fun onServiceResolved(serviceInfo: NsdServiceInfo) {
             Log.e(TAG, "onServiceResolved() serviceInfo=$serviceInfo")
-            serviceInfo.attributes[getString(R.string.txt_record_attribute)]?.let {
-                // TODO: compare txtRecord against configured value
-                //val txtRecord = String(it)
-                val serviceUrl = "http:/" + serviceInfo.host + ":" + serviceInfo.port
-                onServiceUrlReady(serviceUrl)
+            serviceInfo.attributes["dpfplugin"]?.let {
+                if (String(it) == "1") {
+                    serviceInfo.attributes["id"]?.let {
+                        // TODO: compare txtRecord against configured value
+                        //val id = String(it)
+                    }
+                    val serviceUrl = "http:/" + serviceInfo.host + ":" + serviceInfo.port
+                    onServiceUrlReady(serviceUrl)
+                }
             }
         }
     }
