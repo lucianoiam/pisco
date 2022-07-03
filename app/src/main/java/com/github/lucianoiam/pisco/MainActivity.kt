@@ -172,9 +172,14 @@ class MainActivity : AppCompatActivity() {
             Log.e(TAG, "onServiceResolved() serviceInfo=$serviceInfo")
             serviceInfo.attributes["dpfplugin"]?.let {
                 if (String(it) == "1") {
-                    serviceInfo.attributes["id"]?.let {
+                    serviceInfo.attributes["instanceid"]?.let {
                         // TODO: compare txtRecord against configured value
-                        //val id = String(it)
+                        val instanceId = String(it)
+                        System.out.println("Found plugin instance ID = $instanceId")
+                    }
+                    serviceInfo.attributes["uri"]?.let {
+                        val uri = String(it)
+                        System.out.println("Plugin URI = $uri")
                     }
                     val serviceUrl = "http:/" + serviceInfo.host + ":" + serviceInfo.port
                     onServiceUrlReady(serviceUrl)
