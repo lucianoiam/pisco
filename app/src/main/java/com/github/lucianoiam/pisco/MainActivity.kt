@@ -170,20 +170,16 @@ class MainActivity : AppCompatActivity() {
 
         override fun onServiceResolved(serviceInfo: NsdServiceInfo) {
             Log.e(TAG, "onServiceResolved() serviceInfo=$serviceInfo")
-            serviceInfo.attributes["dpfplugin"]?.let {
-                if (String(it) == "1") {
-                    serviceInfo.attributes["instanceid"]?.let {
-                        // TODO: compare txtRecord against configured value
-                        val instanceId = String(it)
-                        System.out.println("Found plugin instance ID = $instanceId")
-                    }
-                    serviceInfo.attributes["uri"]?.let {
-                        val uri = String(it)
-                        System.out.println("Plugin URI = $uri")
-                    }
-                    val serviceUrl = "http:/" + serviceInfo.host + ":" + serviceInfo.port
-                    onServiceUrlReady(serviceUrl)
+            serviceInfo.attributes["dpfuri"]?.let {
+                val uri = String(it)
+                System.out.println("Found plugin with URI = $uri")
+                serviceInfo.attributes["instanceid"]?.let {
+                    // TODO: compare instance ID against favorite value
+                    val instanceId = String(it)
+                    System.out.println("Plugin instance ID = $instanceId")
                 }
+                val serviceUrl = "http:/" + serviceInfo.host + ":" + serviceInfo.port
+                onServiceUrlReady(serviceUrl)
             }
         }
     }
