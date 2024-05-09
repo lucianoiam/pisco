@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.github.lucianoiam.pisco"
         minSdkVersion 23
-        targetSdkVersion 32
-        versionCode 1
-        versionName "0.1.0"
+        targetSdkVersion 33
+        versionCode 2
+        versionName "0.1.1"
     }
     buildTypes {
         release {
